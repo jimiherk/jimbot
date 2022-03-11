@@ -1,7 +1,7 @@
 {
   "name": "jimbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "My own Discord bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -18,7 +18,13 @@
   },
   "homepage": "https://github.com/iB1Jimbob/jimbot#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "discord.js": "^13.6.0",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "firebase-admin": "^10.0.2",
+    "install": "^0.13.0",
+    "node-fetch": "^2.6.7",
+    "npm": "^8.5.3",
+    "wait": "^0.4.2"
   }
 }
