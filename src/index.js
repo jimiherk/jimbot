@@ -6,7 +6,7 @@ const cors = require('cors');
 const admin = require('firebase-admin');
 
 // Import the required files
-const config = require('./config.json');
+const config = require('../config.json');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
@@ -14,7 +14,7 @@ const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'
 const client = new Discord.Client({intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"]});
 const app = express();
 admin.initializeApp({
-    credential: admin.credential.cert(require('./firebaseServiceAccountKey.json'))
+    credential: admin.credential.cert(require('../firebaseServiceAccountKey.json'))
 });
 const db = admin.firestore();
 

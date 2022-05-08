@@ -2,9 +2,9 @@
   "name": "jimbot",
   "version": "1.0.0",
   "description": "My own Discord bot",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/iB1Jimbob/jimbot/issues"
   },
-  "homepage": "https://github.com/iB1Jimbob/jimbot#readme",
+  "homepage": "https://bot.jimi.sexy",
   "dependencies": {
     "cors": "^2.8.5",
     "discord.js": "^13.6.0",
