@@ -7,8 +7,8 @@ const admin = require('firebase-admin');
 
 // Import the required files
 const config = require('../config.json');
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(`${__dirname}/commands`).filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync(`${__dirname}/events`).filter(file => file.endsWith('.js'));
 
 // Define clients, etc.
 const client = new Discord.Client({intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_EMOJIS_AND_STICKERS", "GUILD_INTEGRATIONS", "GUILD_WEBHOOKS", "GUILD_INVITES", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "GUILD_MESSAGE_REACTIONS", "GUILD_MESSAGE_TYPING", "DIRECT_MESSAGES", "DIRECT_MESSAGE_REACTIONS", "DIRECT_MESSAGE_TYPING"]});
@@ -21,12 +21,13 @@ const db = admin.firestore();
 // Enable CORS for the http server
 app.use(cors());
 
-const prefix = config.prefix
+// Define some required variables
+const prefix = config.prefix;
 const commandArray = [];
+const PORT = process.env.PORT || 5000;
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-
     commandArray.push(command);
 }
 fs.writeFileSync('./commands.json', JSON.stringify(commandArray));
@@ -34,6 +35,39 @@ fs.writeFileSync('./commands.json', JSON.stringify(commandArray));
 app.get('/commands', (req, res) => {
     res.status(200).send(JSON.stringify(commandArray));
 });
+
+app.get('/info', (req, res) => {
+    res.status(200).send(JSON.stringify({
+        clientInfo: client.user,
+        guilds: client.guilds.cache.size,
+        users: client.guilds.cache.reduce((a, b) => a + b.memberCount, 0),
+        channels: client.guilds.cache.reduce((a, b) => a + b.channels.cache.size, 0),
+    }));
+});
+
+/*
+app.post('/donation', (req, res) => {
+    req.on('data', (data) => {
+        data = JSON.parse(data);
+        data = data.data;
+
+        if (data.verification_token !== config.kofi-key) return res.status(403).send(JSON.stringify({error: 'Invalid verification token'}));
+
+        const donation = {
+            amount: data.amount,
+            currency: data.currency,
+            at: data.timestamp,
+            type: data.type,
+            url: data.url,
+            from: {
+                name: data.from_name,
+                email: data.email,
+                message: data.message
+            }
+        };
+    })
+});
+*/
 
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
@@ -58,8 +92,8 @@ client.on('messageCreate', message => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('Listening on port 3000');
+app.listen(PORT, () => {
+    console.log(`HTTP server listening on port ${PORT}`);
 });
 
 client.login(config.token);

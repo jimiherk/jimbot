@@ -1,30 +1,30 @@
 {
-  "name": "jimbot",
-  "version": "1.0.0",
-  "description": "My own Discord bot",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "node ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iB1Jimbob/jimbot.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iB1Jimbob/jimbot/issues"
-  },
-  "homepage": "https://bot.jimi.sexy",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "discord.js": "^13.6.0",
-    "express": "^4.17.2",
-    "firebase-admin": "^10.0.2",
-    "install": "^0.13.0",
-    "node-fetch": "^2.6.7",
-    "npm": "^8.5.3",
-    "wait": "^0.4.2"
-  }
+    "name": "jimbot",
+    "version": "1.0.0",
+    "description": "My own Discord bot",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "node ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/iB1Jimbob/jimbot.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/iB1Jimbob/jimbot/issues"
+    },
+    "homepage": "https://bot.jimi.sexy",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "discord.js": "^13.6.0",
+        "express": "^4.17.2",
+        "firebase-admin": "^10.0.2",
+        "install": "^0.13.0",
+        "node-fetch": "^2.6.7",
+        "npm": "^8.5.3",
+        "wait": "^0.4.2"
+    }
 }
