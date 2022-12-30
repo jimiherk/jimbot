@@ -7,7 +7,7 @@ module.exports = {
     usage: "j!help [command]",
     aliases: ["commands", "command", "cmd", "cmds"],
     async execute(client, message, args, db) {
-        const commandFile = JSON.parse(fs.readFileSync(`${__dirname}/../commands.json`, 'utf8'));
+        const commandFile = JSON.parse(fs.readFileSync(`${__dirname}/../../commands.json`, 'utf8'));
         const jimi = await client.users.fetch('538414949140267008').catch(console.error);
 
         if (args.length === 0) {
@@ -20,7 +20,7 @@ module.exports = {
 
             for (const command of commandFile) {
                 const field = 'Usage: `' + command.usage + '`\nAliases: ' + command.aliases + '\n*' + command.description + '*';
-                embed.addField(`${command.name}`, field, true);
+                embed.addFields({name: command.name, value: field, inline: true})
             }
 
             const row1 = new Discord.MessageActionRow()
