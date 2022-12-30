@@ -17,7 +17,7 @@ module.exports = {
             subreddit = "";
         }
 
-        const request = await fetch(`https://meme-api.herokuapp.com/gimme/${subreddit}`, {
+        const request = await fetch(`https://meme-api.com/gimme/${subreddit}`, {
             method: 'GET'
         });
 
